@@ -1,0 +1,84 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        flatDir {
+            dirs 'libs'
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.3'
+    }
+}
+
+apply plugin: 'com.android.application'
+repositories {
+	mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.6.3'
+    implementation files('D:/pengpeng/Itouzi/app/libs/android-junit-report-1.5.8.jar')
+}
+
+android {
+    compileSdkVersion 'android-23'
+    buildToolsVersion '27.0.1'
+//    defaultConfig {
+//        testInstrumentationRunner "com.antourong.itouzi.test.Runner"
+//
+//    }
+
+
+    android {
+        defaultConfig {
+            minSdkVersion 14
+//            testInstrumentationRunner "com.antourong.itouzi.test.Runner1"
+        }
+
+        lintOptions {
+            abortOnError false
+        }
+        sourceSets
+                {
+                    androidTest
+                            {
+                                res.srcDirs = ['res']
+                                assets.srcDirs = ['assets']
+                            }
+                }
+    }
+    buildTypes {
+        release {
+            proguardFile getDefaultProguardFile('proguard-android.txt')
+        }
+    }
+}
+
+afterEvaluate { 
+    task assembleDebug(overwrite: true) {}
+
+    task copyTask(type: Copy) {
+        from 'C:/Users/jh/Desktop/bao/signed_itz_3.1.1_releasetestin_debug.apk'
+        into 'build/outputs/apk/debug/'
+        rename {
+            'Itouzi-debug.apk'
+        }
+    }
+
+    assembleDebug.dependsOn copyTask 
+}
+
+dependencies {
+    androidTestCompile 'com.android.support.test:runner:0.4'
+    // Set this dependency to use JUnit 4 rules
+    androidTestCompile 'com.android.support.test:rules:0.4'
+}
+
+//android {
+//    defaultConfig {
+//        testInstrumentationRunner "com.antourong.itouzi.test.Runner"
+//    }
+//}
