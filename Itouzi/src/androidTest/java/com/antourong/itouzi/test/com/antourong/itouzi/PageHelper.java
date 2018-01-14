@@ -3,6 +3,7 @@ package com.antourong.itouzi.test.com.antourong.itouzi;
 import com.antourong.itouzi.test.SoloWrap;
 import com.antourong.itouzi.test.com.antourong.itouzi.pages.MyCenter;
 import com.antourong.itouzi.test.com.antourong.itouzi.pages.PageLogin;
+import com.antourong.itouzi.test.com.antourong.itouzi.pages.Share;
 import com.antourong.itouzi.test.com.antourong.itouzi.pages.Start;
 
 /**
@@ -14,6 +15,7 @@ public class PageHelper {
     private PageLogin pagelogin;
     private Start start;
     private MyCenter mycenter;
+    private Share share;
 
     public PageHelper(SoloWrap solo){
         this.solo = solo;
@@ -40,8 +42,13 @@ public class PageHelper {
 //        mycenter.initView();
         return mycenter;
     }
-
-
+    public Share getShare() {
+        if (share == null) {
+            share = new Share(solo);
+        }
+//        share.initview();
+        return share;
+    }
 
 }
 

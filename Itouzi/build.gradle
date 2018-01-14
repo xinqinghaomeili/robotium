@@ -75,6 +75,7 @@ dependencies {
     androidTestCompile 'com.android.support.test:runner:0.4'
     // Set this dependency to use JUnit 4 rules
     androidTestCompile 'com.android.support.test:rules:0.4'
+    compile 'com.squareup.okhttp3:okhttp:3.5.0'
 }
 
 //android {
